@@ -9,9 +9,9 @@ class Driver:
         self.deliveries = 0
 
 drivers = [
-    Driver(1, "Alice"),
-    Driver(2, "Bob"),
-    Driver(3, "Charlie"),
+    Driver(1, "Driver 1"),
+    Driver(2, "Driver 2"),
+    Driver(3, "Driver 3"),
 ]
 
 def assign_delivery():
