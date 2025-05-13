@@ -2,96 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pizza Delivery Load Balancing</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            margin: 40px;
-            text-align: center;
-        }
-
-        h1 {
-            color: #343a40;
-            margin-bottom: 30px;
-        }
-
-        table {
-            margin: 0 auto;
-            border-collapse: collapse;
-            width: 60%;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        th, td {
-            padding: 12px 20px;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-
-        .assign-btn {
-            background-color: #17a2b8;
-            margin-bottom: 20px;
-            padding: 10px 18px;
-            font-size: 16px;
-        }
-
-        .assign-btn:hover {
-            background-color: #138496;
-        }
-    </style>
+    <title>Pizza Delivery Load Balancer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        // Refresh every 3 seconds
+        setTimeout(() => {
+            window.location.reload();
+        }, 3000);
+    </script>
 </head>
 <body>
-    <h1>Pizza Delivery Load Balancing</h1>
-    <form method="post" action="/assign_delivery">
-        <button class="assign-btn" type="submit">Assign New Delivery</button>
-    </form>
-    <table>
-        <thead>
-            <tr>
-                <th>Driver Name</th>
-                <th>Deliveries</th>
-                <th>Complete Delivery</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for driver in drivers %}
-            <tr>
-                <td>{{ driver.name }}</td>
-                <td>{{ driver.deliveries }}</td>
-                <td>
-                    <form method="post" action="/complete_delivery/{{ driver.id }}">
-                        <button type="submit">Complete</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <h1>Pizza Delivery Load Balancer</h1>
+
+    <a href="{{ url_for('add_driver_page') }}">Add a New Driver</a>
+
+    <div class="driver-table">
+        {% if drivers %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Driver Name</th>
+                    <th>Total Deliveries</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for driver in drivers %}
+                <tr>
+                    <td>{{ driver.name }}</td>
+                    <td>{{ driver.deliveries }}</td>
+                    <td>{{ 'Active' if driver.active else 'Inactive' }}</td>
+                    <td>
+                        <form action="/toggle_driver/{{ loop.index0 }}" method="post" style="display: inline;">
+                            <button type="submit">{{ 'Deactivate' if driver.active else 'Activate' }}</button>
+                        </form>
+                        <form action="/complete_delivery/{{ loop.index0 }}" method="post" style="display: inline;">
+                            <button type="submit">Complete Delivery</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No drivers available.</p>
+        {% endif %}
+    </div>
 </body>
 </html>

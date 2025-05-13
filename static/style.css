@@ -1,0 +1,115 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Solid light sky blue background */
+    background-color: #87CEFA; /* Light Sky Blue color */
+    color: #333;
+    padding: 40px;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+/* Add Driver Button */
+a {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 30px auto;
+    padding: 12px 24px;
+    background-color: #ff5c5c;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+a:hover {
+    background-color: #e04343;
+}
+
+/* Driver Table */
+.driver-table {
+    max-width: 800px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.95);  /* slightly transparent */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+thead {
+    background-color: #ffd166;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Buttons */
+button {
+    padding: 8px 16px;
+    margin: 4px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+button[type="submit"] {
+    background-color: #06d6a0;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #05b88b;
+}
+
+/* Deactivate button (red) */
+form[action*="toggle_driver"] button {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+form[action*="toggle_driver"] button:hover {
+    background-color: #e74c3c;
+}
+
+/* Complete delivery button (blue) */
+form[action*="complete_delivery"] button {
+    background-color: #118ab2;
+    color: white;
+}
+
+form[action*="complete_delivery"] button:hover {
+    background-color: #0d6e95;
+}
