@@ -15,6 +15,7 @@ drivers = []
 
 # Background thread for auto-assigning deliveries every 3 seconds
 def auto_add_deliveries():
+    print("⏳ Auto-delivery thread is running...")
     while True:
         time.sleep(3)
         active_drivers = [d for d in drivers if d.active]
@@ -67,4 +68,4 @@ def complete_delivery(index):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)
