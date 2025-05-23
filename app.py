@@ -67,5 +67,17 @@ def complete_delivery(index):
             print(f"[✓] {driver.name} completed a delivery. Total Deliveries: {driver.deliveries}")
     return redirect(url_for('index'))
 
+from flask import jsonify
+
+@app.route('/data')
+def data():
+    return jsonify({
+        'names': [driver.name for driver in drivers],
+        'deliveries': [driver.deliveries for driver in drivers],
+        'active': [driver.active for driver in drivers]
+    })
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)
